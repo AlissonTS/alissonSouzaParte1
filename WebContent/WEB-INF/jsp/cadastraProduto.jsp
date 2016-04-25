@@ -46,7 +46,7 @@
 						</select>
 					</div>
 					
-					<p style="text-align: center;"><button type="submit">Adicionar Produto</button></p>
+					<p style="text-align: center;"><button type="submit">Adicionar Produto >></button></p>
 					<br>
 					<hr style="border-color: black;">
 					
