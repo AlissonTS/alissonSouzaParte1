@@ -7,7 +7,7 @@
 <html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-			<title>Página Principal</title>
+			<title>Página Principal - Index</title>
 		</head>
 		<body>
 			<p style="text-align: center"><a href="mvc?logica=RedirecionaProduto">Cadastrar Produtos</a></p>
