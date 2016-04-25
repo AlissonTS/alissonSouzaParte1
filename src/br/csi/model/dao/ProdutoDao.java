@@ -108,7 +108,7 @@ public class ProdutoDao {
 					}else{
 						System.out.println("......... vai alterar .............");
 						sql = "UPDATE PRODUTO SET DESCRICAO =?, PRECO=?  "
-								+ " WHERE id =?";
+								+ " WHERE codigo =?";
 						stmt = c.prepareStatement(sql);								
 						stmt.setString(1, t.getDescricao());
 						stmt.setFloat(2, t.getPreco());
