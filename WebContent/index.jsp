@@ -8,8 +8,12 @@
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 			<title>Página Principal - Index</title>
+			<link href="css/bootstrap.css" rel="stylesheet">
+			<link href="css/login.css" rel="stylesheet">
+			<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		</head>
 		<body>
-			<p style="text-align: center"><a href="mvc?logica=RedirecionaProduto">Cadastrar Produtos</a></p>
+			<br>
+			<center><a href="mvc?logica=RedirecionaProduto">Cadastrar Produtos</a></center>
 		</body>
 </html>

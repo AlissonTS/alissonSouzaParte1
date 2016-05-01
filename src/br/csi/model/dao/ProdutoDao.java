@@ -47,6 +47,67 @@ import java.util.List;
 */
 public class ProdutoDao {
 			
+			public Fornecedor getForn(Long codigo){
+				Fornecedor t = new Fornecedor();
+				
+				try{
+					PreparedStatement stmt =  
+							ConectarPostGresFactory.getConexao().prepareStatement("select * from Fornecedor where codigo=?");
+					stmt.setLong(1, codigo);
+					
+					ResultSet rs = stmt.executeQuery();
+					while(rs.next()){
+						t.setCodigo(rs.getLong("codigo"));
+						t.setRazaoS(rs.getString("razaosocial"));
+						System.out.println("Código do Fornecedor: "+t.getCodigo());
+					}
+					System.out.println("--------------------------------------------------------------------------------------");
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				return t;
+			}
+		
+			/* ------------------------------------------------------------------------------------------------- */
+			public List<Produto> getProdutoF(Long codigo){
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println("dentro do getProdutoF()");
+				
+				ArrayList<Produto> produtos = new ArrayList<Produto>();
+				
+				try{
+					
+					PreparedStatement stmt =  
+							ConectarPostGresFactory
+							.getConexao().prepareStatement("select p.codigo, p.descricao, p.preco "
+									+ "from fornecedor f, produto p, fornecprod fp "
+									+ "where f.codigo = fp.codigofornec and p.codigo = fp.codigoprod and  f.codigo=?");
+					stmt.setLong(1, codigo);
+					
+					ResultSet rs = stmt.executeQuery();
+					
+					while(rs.next()){
+						Produto t = new Produto();
+						t.setCodigo(rs.getLong("codigo"));
+						t.setDescricao(rs.getString("descricao"));
+						t.setPreco(rs.getFloat("preco"));
+						System.out.println("Código do Produto: "+t.getCodigo());
+						System.out.println("Código do Produto: "+t.getDescricao());
+						System.out.println("Código do Produto: "+t.getPreco());
+						
+						produtos.add(t);
+					}
+				System.out.println("--------------------------------------------------------------------------------------");
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				return produtos;
+			}	
+			/* ------------------------------------------------------------------------------------------------- */
 			/* ------------------------------------------------------------------------------------------------- */
 			public Produto getProduto(Long codigo){
 				System.out.println("--------------------------------------------------------------------------------------");

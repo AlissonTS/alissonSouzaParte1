@@ -25,6 +25,16 @@ public class InserirProduto implements Logica{
 			System.out.println("id parameter ..."+codigo);
 			String[] fornecedores = rq.getParameterValues("fornecedores");
 			
+			ProdutoDao pD = new ProdutoDao();
+			
+			String pagina = "/WEB-INF/jsp/cadastraProduto.jsp";
+			
+			if(fornecedores==null){
+				rq.setAttribute("produtos", pD.getProdutos());
+				rq.setAttribute("msg", "Problemas ao Inserir");
+				return pagina;
+			}
+			
 			Produto u = new Produto();
 			ArrayList<Fornecedor> f = new ArrayList<Fornecedor>();
 			
@@ -60,9 +70,6 @@ public class InserirProduto implements Logica{
 			}else{
 				u.setCodigo(Long.parseLong(codigo));
 			}
-			ProdutoDao pD = new ProdutoDao();
-			
-			String pagina = "/WEB-INF/jsp/cadastraProduto.jsp";
 			
 			try {
 				

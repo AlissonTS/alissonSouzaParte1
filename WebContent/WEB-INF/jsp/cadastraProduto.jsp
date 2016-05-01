@@ -15,11 +15,18 @@
 		
 		<body>
 			<div class="container">
-			
+				<br>
 				<p style="text-align: center"><a href="index.jsp">Index</a></p>
+				<p style="text-align: center"><a href="mvc?logica=RedirecionaProduto">Página de Cadastro</a></p>
 				
 				<form action="mvc?logica=InserirProduto" method="post">
 					<hr style="border-color: black;">
+					
+					<c:if test="${not empty msg}">
+						<h2 style="text-align: center">${msg}!</h2>
+						<hr style="border-color: black;">
+					</c:if>
+					
 					<c:if test="${not empty produto}">
 						<h2 style="text-align: center;">Alterar Produto: ${produto.descricao}</h2>
 						<p><input type="hidden" name="codigo" value="${produto.codigo}" /></p>
@@ -106,7 +113,42 @@
 				
 				<c:if test="${not empty produtos}">
 					<div class="container">
-					
+						
+						<c:if test="${not empty produtoF}">
+						
+								<h2 style="text-align: center">Fornecedor: ${f.codigo} - ${f.razaoS}</h2>	
+								<h2 style="text-align: center">Lista de Produtos: </h2>
+								<table class="text-center table table-bordered table-responsive">
+									<thead>
+										<tr>
+											<th class="text-center">Código </th>
+											<th class="text-center">Descrição </th>
+											<th class="text-center">Preço </th>
+											<th class="text-center"><i class="fa fa-cog"></i></th>
+										</tr>
+									</thead>
+									<tbody>
+										
+										<c:forEach var="produto" items="${produtoF}">
+											<tr>
+												<td>${produto.codigo}</td>
+												<td>${produto.descricao}</td>
+												<td>${produto.preco}</td>
+												
+												<td><a class="btn btn-success"
+													href="mvc?logica=BuscarProduto&&codigo=${produto.codigo}"
+													title="Alterar Produto"><i class="fa fa-refresh"></i></a> <i
+													class="fa fa-arrows-h"></i> <a class="btn btn-danger"
+													href="mvc?logica=RemoverProduto&&codigo=${produto.codigo}"
+													title="Deletar Produto"><i class="fa fa-trash"></i></a></td>
+											</tr>
+										</c:forEach>
+										
+									</tbody>
+								</table>	
+						</c:if>
+						
+						<br>
 						<h2 style="text-align: center">Lista de Fornecedores: </h2>
 						<table class="text-center table table-bordered table-responsive">
 							<thead>
@@ -123,7 +165,7 @@
 										<td>${fornecedor.codigo}</td>
 										<td>${fornecedor.razaoS}</td>
 										<td><a class="btn btn-success"
-										href="mvc?logica=BuscarProdutoF&&codigo=${fornecedor.codigo}"
+										href="mvc?logica=BuscarProdutosFornecedor&&codigo=${fornecedor.codigo}"
 										title="Listar Produtos"><i class="fa fa-eye"></i></a></td>
 									</tr>	
 								</c:forEach>
@@ -131,11 +173,10 @@
 							</tbody>
 						</table>
 						
-						<br>
-						
+						<br>						
 						<h2 style="text-align: center">Lista de Produtos: </h2>
 						<table class="text-center table table-bordered table-responsive">
-						<thead>
+							<thead>
 								<tr>
 									<th class="text-center">Código </th>
 									<th class="text-center">Descrição </th>
