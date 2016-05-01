@@ -15,7 +15,9 @@
 		
 		<body>
 			<div class="container">
+			
 				<p style="text-align: center"><a href="index.jsp">Index</a></p>
+				
 				<form action="mvc?logica=InserirProduto" method="post">
 					<hr style="border-color: black;">
 					<c:if test="${not empty produto}">
@@ -104,7 +106,34 @@
 				
 				<c:if test="${not empty produtos}">
 					<div class="container">
-						<h2 style="text-align: center">Lista de Produtos</h2>
+					
+						<h2 style="text-align: center">Lista de Fornecedores: </h2>
+						<table class="text-center table table-bordered table-responsive">
+							<thead>
+								<tr>
+									<th class="text-center">Código </th>
+									<th class="text-center">Razão Social </th>
+									<th class="text-center"><i class="fa fa-cog"></i></th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								<c:forEach var="fornecedor" items="${fornecedores}">
+									<tr>
+										<td>${fornecedor.codigo}</td>
+										<td>${fornecedor.razaoS}</td>
+										<td><a class="btn btn-success"
+										href="mvc?logica=BuscarProdutoF&&codigo=${fornecedor.codigo}"
+										title="Listar Produtos"><i class="fa fa-eye"></i></a></td>
+									</tr>	
+								</c:forEach>
+								
+							</tbody>
+						</table>
+						
+						<br>
+						
+						<h2 style="text-align: center">Lista de Produtos: </h2>
 						<table class="text-center table table-bordered table-responsive">
 						<thead>
 								<tr>
@@ -116,20 +145,21 @@
 							</thead>
 							<tbody>
 								
-								<c:forEach var="produto" items="${produtos}">
-									<tr>
-										<td>${produto.codigo}</td>
-										<td>${produto.descricao}</td>
-										<td>${produto.preco}</td>
-										
-										<td><a class="btn btn-success"
-											href="mvc?logica=BuscarProduto&&codigo=${produto.codigo}"
-											title="Alterar Produto"><i class="fa fa-refresh"></i></a> <i
-											class="fa fa-arrows-h"></i> <a class="btn btn-danger"
-											href="mvc?logica=RemoverProduto&&codigo=${produto.codigo}"
-											title="Deletar Produto"><i class="fa fa-trash"></i></a></td>
-									</tr>
-								</c:forEach>
+							<c:forEach var="produto" items="${produtos}">
+								<tr>
+									<td>${produto.codigo}</td>
+									<td>${produto.descricao}</td>
+									<td>${produto.preco}</td>
+									
+									<td><a class="btn btn-success"
+										href="mvc?logica=BuscarProduto&&codigo=${produto.codigo}"
+										title="Alterar Produto"><i class="fa fa-refresh"></i></a> <i
+										class="fa fa-arrows-h"></i> <a class="btn btn-danger"
+										href="mvc?logica=RemoverProduto&&codigo=${produto.codigo}"
+										title="Deletar Produto"><i class="fa fa-trash"></i></a></td>
+								</tr>
+							</c:forEach>
+								
 							</tbody>
 						</table>
 					</div>

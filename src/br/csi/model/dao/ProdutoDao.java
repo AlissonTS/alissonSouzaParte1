@@ -84,8 +84,8 @@ public class ProdutoDao {
 				
 				return u;
 			}
-			
-
+			/* ------------------------------------------------------------------------------------------------- */
+			/* ------------------------------------------------------------------------------------------------- */
 			public Produto getFornecedores(Produto p){
 				System.out.println("--------------------------------------------------------------------------------------");
 				System.out.println("dentro do getFornecedores(p) para pegar a Lista de Fornecedores do Produto");
