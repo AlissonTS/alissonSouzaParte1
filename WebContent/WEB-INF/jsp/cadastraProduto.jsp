@@ -45,7 +45,30 @@
 					<div class="selecao">
 						<center><label for="preco">Fornecedores: </label></center>
 							<c:if test="${not empty produto}">
+								<c:set var="verificador" value="1"/> 
 								
+								<c:forEach var="fornecedor" items="${fornecedores}">
+								
+									<c:forEach var="fornprod" items="${produto.fornecedores}">
+										<c:if test="${fornecedor.codigo==fornprod.codigo}">
+											<center><label><input type="checkbox" value="${fornecedor.codigo}" name="fornecedores" checked> 
+											${fornecedor.razaoS}</label></center>
+											<c:set var="verificador" value="2"/> 
+										</c:if>
+									</c:forEach>
+									
+									<c:choose>
+										<c:when test="${verificador==1}">
+										<center><label><input type="checkbox" value="${fornecedor.codigo}" name="fornecedores"> 
+										${fornecedor.razaoS}</label></center>
+										</c:when>
+										
+										<c:when test="${verificador==2}">
+											<c:set var="verificador" value="1"/>
+										</c:when>
+									</c:choose>
+		
+								</c:forEach>
 							
 							</c:if>
 							
