@@ -15,6 +15,8 @@ public class BuscarProduto implements Logica {
 		
 		rq.setAttribute("produtos", new ProdutoDao().getProdutos());
 		rq.setAttribute("produto", new ProdutoDao().getProduto(Long.parseLong(codigo)));
+		rq.setAttribute("fornecedores", new ProdutoDao().getFornecedores());
+		
 		return "/WEB-INF/jsp/cadastraProduto.jsp";
 	}
 

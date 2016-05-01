@@ -14,6 +14,7 @@ public class RemoverProduto implements Logica{
 		new ProdutoDao().remover(Long.parseLong(codigo));
 		
 		rq.setAttribute("produtos", new ProdutoDao().getProdutos());
+		rq.setAttribute("fornecedores", new ProdutoDao().getFornecedores());
 		
 		return "/WEB-INF/jsp/cadastraProduto.jsp";
 	}

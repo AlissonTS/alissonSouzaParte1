@@ -1,10 +1,13 @@
 package br.csi.model;
 
+import java.util.ArrayList;
+
 public class Produto {
 		
 		private long codigo;
 		private String descricao;
 		private float preco;
+		private ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		
 		public long getCodigo() {
 			return codigo;
@@ -23,5 +26,12 @@ public class Produto {
 		}
 		public void setPreco(float preco) {
 			this.preco = preco;
+		}
+		
+		public ArrayList<Fornecedor> getFornecedores() {
+			return fornecedores;
+		}
+		public void setFornecedores(ArrayList<Fornecedor> fornecedores) {
+			this.fornecedores = fornecedores;
 		}
 }

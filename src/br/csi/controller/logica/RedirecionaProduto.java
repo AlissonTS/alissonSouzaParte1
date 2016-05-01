@@ -12,7 +12,8 @@ public class RedirecionaProduto implements Logica{
 		System.out.println("dentro do redirecinamento ....");
 		
 		 rq.setAttribute("produtos", new ProdutoDao().getProdutos());
-		
+		 rq.setAttribute("fornecedores", new ProdutoDao().getFornecedores());
+		 
 		return "/WEB-INF/jsp/cadastraProduto.jsp";
 	}
 

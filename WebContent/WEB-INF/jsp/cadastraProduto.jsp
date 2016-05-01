@@ -12,6 +12,7 @@
 			<link href="css/login.css" rel="stylesheet">
 			<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		</head>
+		
 		<body>
 			<div class="container">
 				<p style="text-align: center"><a href="index.jsp">Index</a></p>
@@ -23,29 +24,53 @@
 					</c:if>
 					
 					<c:if test="${empty produto}">
-						<h2 style="text-align: center;">Adicionar Produto:</h2>
+						<center><h2>Adicionar Produto:</h2></center>
 					</c:if>
 					
 					<hr style="border-color: black;">
 					<div class="form-group">
-						<p><label for="descricao">Descrição: </label><input type="text"
+						<center><p><label for="descricao">Nome: </label><input type="text"
 							id="descricao" name="descricao"
-							value="${produto.descricao}" placeholder="Descricao"></p>
+							value="${produto.descricao}" placeholder="Nome do Produto"></p></center>
 					</div>
 					
+					<br>
 					<div class="form-group">
-						<p><label for="preco">Preço: </label><input type="text"
+						<center><p><label for="preco">Preço: </label><input type="text"
 							 id="preco" name="preco"
-							value="${produto.preco}" placeholder="Preco">
-						</p>
-					</div>
-					<div class="selecao"><label for="preco">Fornecedores: </label>
-						<select name="fornecedores">
-							<option value="1">FBI bebidas</option>
-							<option value="2">Carva Fornos LTDA</option>
-						</select>
+							value="${produto.preco}" placeholder="Preço do Produto"></p></center>
 					</div>
 					
+					<br>
+					<div class="selecao">
+						<center><label for="preco">Fornecedores: </label></center>
+							<c:if test="${not empty produto}">
+								
+							
+							</c:if>
+							
+							<c:if test="${empty produto}">
+								<c:forEach var="fornecedor" items="${fornecedores}">
+									<center><label><input type="checkbox" value="${fornecedor.codigo}" name="fornecedores"> 
+									${fornecedor.razaoS}</label></center>
+								</c:forEach>
+							</c:if>
+						
+						<!-- 
+							<input type="checkbox" value="1" name="fornecedores"> FBI bebidas</label>
+							<input type="checkbox" value="2" name="fornecedores"> Carva Fornos LTDA</label>
+							
+							ou
+							
+							<select name="fornecedores">
+								<option value="1">FBI bebidas</option>
+								<option value="2">Carva Fornos LTDA</option>
+							</select> 
+						-->
+						
+					</div>
+					
+					<br>
 					<p style="text-align: center;"><button type="submit">Adicionar Produto >></button></p>
 					<br>
 					<hr style="border-color: black;">
