@@ -49,6 +49,9 @@ public class ProdutoDao {
 			
 			/* ------------------------------------------------------------------------------------------------- */
 			public Produto getProduto(Long codigo){
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println("dentro do getProduto()");
+				
 				Produto u = new Produto();
 				
 				try{
@@ -59,35 +62,82 @@ public class ProdutoDao {
 									.prepareStatement("select * from produto where codigo = ?");
 					stmt.setLong(1, codigo);
 					ResultSet rs = stmt.executeQuery();
+					System.out.println("--------------------------------------------------------------------------------------");
 					while(rs.next()){				
 						u.setCodigo(rs.getLong("codigo"));
 						u.setDescricao(rs.getString("descricao"));
 						u.setPreco(rs.getFloat("preco"));
 						System.out.println("produto: "+u.getCodigo());
-						
 					}
+					
+					u = getFornecedores(u);
+					
+					for(int i=0; i<u.getFornecedores().size(); i++){
+						Fornecedor fornecedor = u.getFornecedores().get(i);
+						System.out.println("Fornecedor do Array SQL: "+fornecedor.getCodigo());  
+					}
+					System.out.println("--------------------------------------------------------------------------------------");
 					
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 				
-				
 				return u;
 			}
+			
+
+			public Produto getFornecedores(Produto p){
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println("dentro do getFornecedores(p) para pegar a Lista de Fornecedores do Produto");
+				
+				ArrayList<Fornecedor> k = new ArrayList<Fornecedor>();
+				
+				try{
+					PreparedStatement stmt = ConectarPostGresFactory
+							.getConexao()
+							.prepareStatement("select * from fornecprod where codigoprod = ?");
+					stmt.setLong(1, p.getCodigo());
+					
+					ResultSet f = stmt.executeQuery();
+					
+					while(f.next()){
+						Fornecedor fornece = new Fornecedor();
+						fornece.setCodigo(f.getInt("codigofornec"));
+						k.add(fornece);
+					}
+					
+					p.setFornecedores(k);
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				return p;
+			}
+			
 			/* ------------------------------------------------------------------------------------------------- */
 			/* ------------------------------------------------------------------------------------------------- */
 			public boolean remover(Long codigo){
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println("dentro do remover()");
+				
 				boolean retorno = false;
 				
-				String sql = "delete from Produto where codigo = ?";
-				Connection c = ConectarPostGresFactory
-						.getConexao();
+				String sql;
 				PreparedStatement stmt = null;
+				Connection c = ConectarPostGresFactory.getConexao();		
 				
 				try {
+					sql = "delete from fornecprod where codigoprod=?";
 					stmt = c.prepareStatement(sql);
 					stmt.setLong(1, codigo);
 					stmt.execute();
+					
+					sql = "delete from Produto where codigo = ?";
+					stmt = c.prepareStatement(sql);
+					stmt.setLong(1, codigo);
+					stmt.execute();
+					
 					retorno = true;
 				} catch (SQLException e) {
 					throw new RuntimeException(e);
@@ -99,7 +149,10 @@ public class ProdutoDao {
 			/* ------------------------------------------------------------------------------------------------- */
 			public List<Produto> getProdutos(){
 				ArrayList<Produto> produtos = new ArrayList<Produto>();
+				
+				System.out.println("--------------------------------------------------------------------------------------");
 				System.out.println("dentro do getProdutos()");
+				
 				try{
 						
 					PreparedStatement stmt =  
@@ -124,6 +177,8 @@ public class ProdutoDao {
 			/* ------------------------------------------------------------------------------------------------- */
 			/* ------------------------------------------------------------------------------------------------- */
 			public boolean adiciona(Produto t){
+				System.out.println("--------------------------------------------------------------------------------------");
+				System.out.println("dentro do adiciona()");
 				
 				Connection c = null;
 				PreparedStatement stmt = null;
@@ -208,8 +263,10 @@ public class ProdutoDao {
 			/* ------------------------------------------------------------------------------------------------- */
 			/* ------------------------------------------------------------------------------------------------- */
 			public List<Fornecedor> getFornecedores(){
-				ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+				System.out.println("--------------------------------------------------------------------------------------");
 				System.out.println("dentro do getFornecedores()");
+				
+				ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 				try{
 						
 					PreparedStatement stmt =  
@@ -223,6 +280,7 @@ public class ProdutoDao {
 						System.out.println("Código do Fornecedor: "+t.getCodigo());
 						fornecedores.add(t);
 					}
+					System.out.println("--------------------------------------------------------------------------------------");
 					
 				}catch(Exception e){
 					e.printStackTrace();

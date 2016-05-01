@@ -9,6 +9,8 @@ public class RemoverProduto implements Logica{
 
 	@Override
 	public String executa(HttpServletRequest rq, HttpServletResponse rp) {
+		System.out.println("\n--------------------------------------------------------------------------------------");
+		System.out.println("dentro do remover ....");
 		String codigo = rq.getParameter("codigo");
 		
 		new ProdutoDao().remover(Long.parseLong(codigo));

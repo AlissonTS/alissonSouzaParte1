@@ -9,6 +9,7 @@ public class RedirecionaProduto implements Logica{
 
 	@Override
 	public String executa(HttpServletRequest rq, HttpServletResponse rp) {
+		System.out.println("\n--------------------------------------------------------------------------------------");
 		System.out.println("dentro do redirecinamento ....");
 		
 		 rq.setAttribute("produtos", new ProdutoDao().getProdutos());

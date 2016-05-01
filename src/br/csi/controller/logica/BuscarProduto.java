@@ -10,6 +10,7 @@ public class BuscarProduto implements Logica {
 	@Override
 	public String executa(HttpServletRequest rq, HttpServletResponse rp) {
 		
+		System.out.println("--------------------------------------------------------------------------------------");
 		String codigo = rq.getParameter("codigo");
 		System.out.println("Código do produto: "+codigo);
 		
