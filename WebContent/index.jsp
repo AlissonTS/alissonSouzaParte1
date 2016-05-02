@@ -14,6 +14,10 @@
 		</head>
 		<body>
 			<br>
+			<center><img src="http://sites.multiweb.ufsm.br/sisint/images/banner.png" alt="Sistemas para Internet" height="200" width="600"></center>
+			<center><h2>Aplicação Programação para Internet B - Alisson Trindade Souza</h2></center>
+			<br>
+			<center><a href="index.jsp">Página Inicial</a></center>
 			<center><a href="mvc?logica=RedirecionaProduto">Cadastrar Produtos</a></center>
 		</body>
 </html>
